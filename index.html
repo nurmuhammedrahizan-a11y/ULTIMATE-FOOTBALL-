@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="kk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#071b15">
+  <meta name="description" content="Ultimate Football — браузердегі жылдам әрі көңілді футбол ойыны.">
+  <title>Ultimate Football</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="game-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Ultimate Football басты бет">
+        <span class="brand-mark" aria-hidden="true">⚽</span>
+        <span>ULTIMATE<span class="brand-accent">FOOTBALL</span></span>
+      </a>
+      <div class="top-actions">
+        <span class="live-label"><i></i> ARCADE MATCH</span>
+        <button id="sound-button" class="icon-button" type="button" aria-label="Дыбысты қосу немесе өшіру" title="Дыбыс">♫</button>
+      </div>
+    </header>
+
+    <section class="match-card" aria-label="Футбол матчы">
+      <div class="scoreboard">
+        <div class="team team-home"><span class="team-badge badge-blue">U</span><span class="team-name">UNITED</span></div>
+        <div class="score-center">
+          <div class="scoreline"><span id="home-score">0</span><span class="score-separator">:</span><span id="away-score">0</span></div>
+          <div id="match-clock" class="match-clock">02:00</div>
+        </div>
+        <div class="team team-away"><span class="team-name">RIVALS</span><span class="team-badge badge-red">R</span></div>
+      </div>
+      <div class="pitch-wrap">
+        <canvas id="game" aria-label="Футбол алаңы. WASD немесе бағыт пернелерімен ойыншыны басқарыңыз." role="img"></canvas>
+        <div id="toast" class="toast" aria-live="polite"></div>
+        <div id="start-screen" class="screen-overlay">
+          <div class="start-panel">
+            <div class="hero-ball" aria-hidden="true">⚽</div>
+            <p class="eyebrow">ӨЗ АЛАҢЫҢ. ӨЗ ЕРЕЖЕҢ.</p>
+            <h1>Матчты баста!</h1>
+            <p class="intro">Қарсыласты алдап өтіп, шешуші голды соқ.</p>
+            <button id="start-button" class="primary-button" type="button">ОЙЫНДЫ БАСТА <span>→</span></button>
+            <p class="start-hint">Бастау үшін <kbd>Enter</kbd> бас</p>
+          </div>
+        </div>
+        <div id="pause-screen" class="screen-overlay hidden">
+          <div class="start-panel compact-panel"><p class="eyebrow">ҮЗІЛІС</p><h2>Ойын тоқтатылды</h2><p class="intro">Жалғастыру үшін <kbd>P</kbd> бас.</p><button id="resume-button" class="primary-button" type="button">ЖАЛҒАСТЫРУ <span>→</span></button></div>
+        </div>
+        <div id="end-screen" class="screen-overlay hidden">
+          <div class="start-panel compact-panel"><p class="eyebrow">СОҢҒЫ ЫСҚЫРЫҚ</p><h2 id="result-title">Матч аяқталды</h2><p id="result-copy" class="intro">Келесі матчта жолың болсын!</p><button id="play-again-button" class="primary-button" type="button">ҚАЙТА ОЙНА <span>↻</span></button></div>
+        </div>
+      </div>
+      <footer class="match-footer">
+        <div class="control-hint"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd><span>ҚОЗҒАЛУ</span></div>
+        <div class="control-hint"><kbd>SPACE</kbd><span>ТЕБУ / ПАС</span></div>
+        <div class="control-hint"><kbd>SHIFT</kbd><span>ЖЫЛДАМ ЖҮГІРУ</span></div>
+        <button id="restart-button" class="text-button" type="button">↻ ҚАЙТА БАСТА</button>
+      </footer>
+    </section>
+    <p class="mobile-note">Телефонда алаңның сол жағында қозғалып, оң жағында теп.</p>
+    <footer class="site-footer"><span>ULTIMATE FOOTBALL</span><span>Таза футбол. Таза эмоция.</span></footer>
+  </main>
+  <script src="game.js" defer></script>
+</body>
+</html>
