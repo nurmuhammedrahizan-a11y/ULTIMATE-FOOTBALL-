@@ -3,63 +3,86 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#071b15">
-  <meta name="description" content="Ultimate Football — браузердегі жылдам әрі көңілді футбол ойыны.">
-  <title>Ultimate Football</title>
+  <meta name="theme-color" content="#081912">
+  <title>Ultimate Football 3D</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <main class="game-shell">
     <header class="topbar">
-      <a class="brand" href="#" aria-label="Ultimate Football басты бет">
-        <span class="brand-mark" aria-hidden="true">⚽</span>
-        <span>ULTIMATE<span class="brand-accent">FOOTBALL</span></span>
-      </a>
+      <div class="brand-wrap">
+        <span class="brand-mark">⚽</span>
+        <div class="brand-text">ULTIMATE <span>FOOTBALL</span></div>
+      </div>
       <div class="top-actions">
-        <span class="live-label"><i></i> ARCADE MATCH</span>
-        <button id="sound-button" class="icon-button" type="button" aria-label="Дыбысты қосу немесе өшіру" title="Дыбыс">♫</button>
+        <span class="live-tag"><i></i> 3D MATCH</span>
+        <button id="sound-button" class="icon-button" type="button" title="Дыбыс" aria-label="Дыбысты қосу немесе өшіру">♫</button>
       </div>
     </header>
 
-    <section class="match-card" aria-label="Футбол матчы">
+    <section class="match-card" aria-label="Ֆутбол матчы">
       <div class="scoreboard">
-        <div class="team team-home"><span class="team-badge badge-blue">U</span><span class="team-name">UNITED</span></div>
-        <div class="score-center">
-          <div class="scoreline"><span id="home-score">0</span><span class="score-separator">:</span><span id="away-score">0</span></div>
+        <div class="team-block home">
+          <span class="team-badge blue">U</span>
+          <span>UNITED</span>
+        </div>
+        <div class="center-block">
+          <div class="scoreline"><span id="home-score">0</span><span class="colon">:</span><span id="away-score">0</span></div>
           <div id="match-clock" class="match-clock">02:00</div>
         </div>
-        <div class="team team-away"><span class="team-name">RIVALS</span><span class="team-badge badge-red">R</span></div>
+        <div class="team-block away">
+          <span>RIVALS</span>
+          <span class="team-badge red">R</span>
+        </div>
       </div>
+
       <div class="pitch-wrap">
-        <canvas id="game" aria-label="Футбол алаңы. WASD немесе бағыт пернелерімен ойыншыны басқарыңыз." role="img"></canvas>
+        <div id="game-root" aria-label="3D футбол алаңы"></div>
+
         <div id="toast" class="toast" aria-live="polite"></div>
+
         <div id="start-screen" class="screen-overlay">
           <div class="start-panel">
-            <div class="hero-ball" aria-hidden="true">⚽</div>
-            <p class="eyebrow">ӨЗ АЛАҢЫҢ. ӨЗ ЕРЕЖЕҢ.</p>
-            <h1>Матчты баста!</h1>
-            <p class="intro">Қарсыласты алдап өтіп, шешуші голды соқ.</p>
-            <button id="start-button" class="primary-button" type="button">ОЙЫНДЫ БАСТА <span>→</span></button>
-            <p class="start-hint">Бастау үшін <kbd>Enter</kbd> бас</p>
+            <div class="hero-ball">⚽</div>
+            <p class="eyebrow">3D arcade football</p>
+            <h1>Match start</h1>
+            <p class="intro">Move, dribble, attack and score on a full 3D pitch.</p>
+            <button id="start-button" class="primary-button" type="button">START MATCH <span>→</span></button>
+            <p class="start-hint">Press <kbd>Enter</kbd> to begin</p>
           </div>
         </div>
+
         <div id="pause-screen" class="screen-overlay hidden">
-          <div class="start-panel compact-panel"><p class="eyebrow">ҮЗІЛІС</p><h2>Ойын тоқтатылды</h2><p class="intro">Жалғастыру үшін <kbd>P</kbd> бас.</p><button id="resume-button" class="primary-button" type="button">ЖАЛҒАСТЫРУ <span>→</span></button></div>
+          <div class="start-panel compact-panel">
+            <p class="eyebrow">PAUSED</p>
+            <h2>Match paused</h2>
+            <p class="intro">Press <kbd>P</kbd> to continue.</p>
+            <button id="resume-button" class="primary-button" type="button">RESUME <span>→</span></button>
+          </div>
         </div>
+
         <div id="end-screen" class="screen-overlay hidden">
-          <div class="start-panel compact-panel"><p class="eyebrow">СОҢҒЫ ЫСҚЫРЫҚ</p><h2 id="result-title">Матч аяқталды</h2><p id="result-copy" class="intro">Келесі матчта жолың болсын!</p><button id="play-again-button" class="primary-button" type="button">ҚАЙТА ОЙНА <span>↻</span></button></div>
+          <div class="start-panel compact-panel">
+            <p class="eyebrow">FINAL WHISTLE</p>
+            <h2 id="result-title">Match over</h2>
+            <p id="result-copy" class="intro">One more game?</p>
+            <button id="play-again-button" class="primary-button" type="button">PLAY AGAIN <span>↻</span></button>
+          </div>
         </div>
       </div>
+
       <footer class="match-footer">
-        <div class="control-hint"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd><span>ҚОЗҒАЛУ</span></div>
-        <div class="control-hint"><kbd>SPACE</kbd><span>ТЕБУ / ПАС</span></div>
-        <div class="control-hint"><kbd>SHIFT</kbd><span>ЖЫЛДАМ ЖҮГІРУ</span></div>
-        <button id="restart-button" class="text-button" type="button">↻ ҚАЙТА БАСТА</button>
+        <div class="control-hint"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd><span>MOVE</span></div>
+        <div class="control-hint"><kbd>SPACE</kbd><span>SHOT / PASS</span></div>
+        <div class="control-hint"><kbd>SHIFT</kbd><span>SPRINT</span></div>
+        <button id="restart-button" class="text-button" type="button">↻ RESTART</button>
       </footer>
     </section>
-    <p class="mobile-note">Телефонда алаңның сол жағында қозғалып, оң жағында теп.</p>
-    <footer class="site-footer"><span>ULTIMATE FOOTBALL</span><span>Таза футбол. Таза эмоция.</span></footer>
+
+    <p class="mobile-note">On touch devices, drag left side to move and tap the right side to shoot.</p>
+    <footer class="site-footer"><span>ULTIMATE FOOTBALL 3D</span><span>Built for fast arcade action.</span></footer>
   </main>
-  <script src="game.js" defer></script>
+
+  <script type="module" src="game.js"></script>
 </body>
 </html>
